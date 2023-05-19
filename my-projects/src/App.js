@@ -1,12 +1,14 @@
 
 import React from 'react';
-
+import Darkmode from './Darkmode';
+import './index.css';
+import image from './image.jpg'
 
 function App() {
   return (
    <>
-   <h1>Durgesh Jadhav</h1>
-   <h2>hello guys</h2>
+   <Darkmode  image={image}/>
+   
    </>
   );
 }
