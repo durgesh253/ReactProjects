@@ -1,54 +1,33 @@
-import React, { useEffect, useState } from 'react'
- const url = `https://course-api.com/react-tabs-project`
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Support from './pages/Support';
+import Home from './pages/Home';
+import About from './pages/About';
+import Nav from './components/Nav';
+import Cocktail from './pages/Cocktail';
+import Courses from './pages/Courses';
+import CourseDetail from './pages/CourseDetail';
+
 
 function App() {
-    const [lodaing , setLoading] = useState(true);
-    const [jobs, setJobs] = useState([]);
-    const [value , setValue] = useState(0);
-
-    const fetchjobs = async () =>{
-        const response = await fetch(url);
-        const newjobs = await response.json();
-        setJobs(newjobs);
-        setLoading(false);
-    }
-
-  useEffect(() =>{
-   fetchjobs();
-  },[]) 
-
-  if(lodaing){
-    return(
-    <section className='section loading'>
-        <h1>Loading....</h1>
-    </section>
-    )
-  }
-   
-  
-  const {title,dates,duties,company} = jobs[value];
   return (
     <>
-    <h1 className='text-center text-primary'>Experiance</h1>
+  
+    <Nav/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/support" element={<Support/>} />
+        <Route path="/courses"  element={<Courses/>}/>
+        <Route path="/cocktail" element={<Cocktail/>}/>
+        <Route path="/course" element={<CourseDetail/>} />
+        
+      </Routes>
+        
+      </>
    
-    <div className='btn-container text-center p-3 '>
-        {
-            jobs.map((item,index)=>{
-                return <button className='btn btn-outline-success border' onClick={() =>{setValue(index)}}>{item.company}</button>
-            })
-        }
-
-    </div>
-    <div className='container'>
-    <h2 className='text-danger'>{title}</h2>
-   <button className='btn btn-warning '> <h3>{company}</h3> </button>
-   <h5  className='text-primary'>{dates}</h5>
-   <p className=''>{duties}</p>
-   </div>
-
-
-    </>
-     )
+  )
 }
 
 export default App
+
