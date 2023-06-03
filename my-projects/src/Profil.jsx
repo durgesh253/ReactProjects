@@ -1,12 +1,11 @@
 import React from 'react'
 
-function About() {
+function Profil() {
   return (
     <div>
-        <h2>About Page</h2>
       
     </div>
   )
 }
 
-export default About
+export default Profil
