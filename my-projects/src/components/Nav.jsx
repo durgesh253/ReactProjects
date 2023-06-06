@@ -1,7 +1,11 @@
 import React from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import App, { Appdetails } from '../App'
 
 function Nav() {
+  const appdetails = useContext(Appdetails);
+  console.log(appdetails);
   return (
    <>
    <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -28,6 +32,11 @@ function Nav() {
           <Link to="/cocktail"  className="nav-link" href="#">Cocktail</Link>
         </li>
       </ul>
+      <div className='d-flex justify-content-between'>
+      {appdetails.login ?( <button className='btn btn-danger'>Logout</button>)
+       :( <button className='btn btn-success'>Login</button>)
+      }
+      </div>
     </div>
   </div>
 </nav>
