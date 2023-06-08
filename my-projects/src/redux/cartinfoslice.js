@@ -6,11 +6,12 @@ const cartinfoslice = createSlice({
          totalitem : 20
     },
     reducers :{
-        increment : (state) =>{
-            state.totalitem = state.totalitem + 1
+        increment : (state , action) =>{
+            console.log(action);
+            state.totalitem = state.totalitem + Number(action.payload)
         },
-        decrement : (state) =>{
-            state.totalitem = state.totalitem - 1
+        decrement : (state,action) =>{
+            state.totalitem = state.totalitem - Number(action.payload)
 
         }
 

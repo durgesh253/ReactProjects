@@ -10,8 +10,8 @@ const profileslice = createSlice({
         image : imag1
     },
     reducers :{
-        changename : (state) =>{
-            state.name = "jadhav"
+        changename : (state, action) =>{
+            state.name = action.payload
             state.image = imag2
         }
 
