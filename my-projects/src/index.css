@@ -7,7 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   
 }
+#app {
+  height: 100%;
+}
 .mySwiper img{
   width: 100%;
-  height:  80vh;
+  height:  90vh;
 }
+
+
