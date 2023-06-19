@@ -1,7 +1,13 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 function Navbar() {
+const data = useLocation()
+console.log(data);
+
+if(data.pathname === '/login'){
+  return null;
+}
   return (
     <>
    <nav className="navbar navbar-expand-lg bg-body-tertiary">
