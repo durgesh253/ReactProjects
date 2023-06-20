@@ -1,40 +1,55 @@
-import React from 'react'
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-
-import "../index.css"
-
-
-// import required modules
-import { Pagination } from "swiper";
+import React, { useEffect, useState } from 'react'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import { NavLink } from 'react-router-dom';
+import MovieList from './MovieList';
 
 
 function Home() {
-    const pagination = {
-        clickable: true,
-        renderBullet: function (index, className) {
-          return '<span class="' + className + '">' + "</span>";
-        },
-      };
-    
+
+
+    useEffect(() =>{
+        fetch('https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US')
+        .then((rsp) => rsp.json())
+        .then((data) => setPopularMovie(data.results))
+    },[])
+    const [popularmovie , setPopularMovie] = useState([]);
+
+
   return (
-    <>
-      <Swiper
-        pagination={pagination}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-          <SwiperSlide><img src="https://images.pexels.com/photos/17048927/pexels-photo-17048927/free-photo-of-wood-light-road-dawn.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" /></SwiperSlide>
-        <SwiperSlide><img src="https://images.pexels.com/photos/16965658/pexels-photo-16965658/free-photo-of-sea-beach-vacation-sand.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" /></SwiperSlide>
-        <SwiperSlide><img src="https://images.pexels.com/photos/16846950/pexels-photo-16846950/free-photo-of-sea-beach-water-ocean.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" /></SwiperSlide>
-        <SwiperSlide><img src="https://images.pexels.com/photos/16962632/pexels-photo-16962632/free-photo-of-woman-in-long-dress-with-horse-in-mountains.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" /></SwiperSlide>
-      </Swiper>
+    <> 
+    <Carousel
+     showThumbs={false}
+     autoPlay={true}
+     transitionTime={3}
+     infiniteLoop={true}
+     showStatus={false}
+    >
 
+    {
+        popularmovie.map(movie => (
+           
+             <NavLink style={{textDecoration:"none",color:"white"}} to={`/movie/${movie.id}`} >
+            <div className=''>
+              <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} style={{width : "100%" , height : "550px"}}/>
+              </div>
+              <div className='image-overlay'>
+                <div className='title'><h1>{movie.original_title}</h1></div>
+                <div className='movie-date'>{movie.release_date}</div>
+                <div className='discrip'><h4>{movie.overview}</h4></div>
+                <div className="ratings"><h2>{movie.vote_average} <i class="fa-solid fa-star"></i></h2>
+      
+      </div>
 
-    </>
+              </div>
+              </NavLink>
+          
+        ))
+    }
+
+</Carousel>
+  <MovieList/>
+ </>
   )
 }
 

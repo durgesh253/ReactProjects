@@ -1,33 +1,24 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Navbar from './Navbar'
-import Home from './pages/Home'
-import Coktail from './pages/Coktail'
-import CocktailDetails from './pages/CocktailDetails'
-import PrivateRoute from './pages/PrivateRoute'
-import Login from './pages/Login'
-
+import Navbar from './componants/Navbar'
+import { Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home';
+import MovieList from './Pages/MovieList';
+import MoviDetail from './componants/MoviDetail';
 
 
 function App() {
- 
   return (
-    <div>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/coktails' element={<Coktail/>}/>
-        <Route path='/coktails/:id' element={<PrivateRoute><CocktailDetails/></PrivateRoute>} />
-        <Route path='/product' element={<h1>Product list</h1>} />
-        <Route path='/add-product' element={<h1>Add product</h1>}/>
-        <Route path='/edit-product' element={<h1>Edit product</h1>}/>
-        <Route path='/login' element={<Login/>}/>
-    
-      </Routes>
-     
-      
-    </div>
+    <>
+   <Navbar/>
+    <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='movie/:id' element={<MoviDetail/>}/>
+      <Route path='movies/:type' element={<MovieList/>}/>
+      <Route path='/*' element={<h2>Error Page</h2>}/>
+    </Routes>
+   
+   </>
   )
 }
 
-export default App
+export default App;
