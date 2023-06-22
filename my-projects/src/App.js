@@ -1,24 +1,16 @@
 import React from 'react'
-import Navbar from './componants/Navbar'
-import { Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
-import MovieList from './Pages/MovieList';
-import MoviDetail from './componants/MoviDetail';
-
+import { Route, Routes } from 'react-router-dom'
+import Layout from './Componants/Layout'
 
 function App() {
   return (
-    <>
-   <Navbar/>
-    <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='movie/:id' element={<MoviDetail/>}/>
-      <Route path='movies/:type' element={<MovieList/>}/>
-      <Route path='/*' element={<h2>Error Page</h2>}/>
-    </Routes>
-   
+   <>
+   <Routes>
+    <Route path='/' element={<Layout/>}/>
+   </Routes>
    </>
   )
 }
 
-export default App;
+export default App
+
