@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
 import { NavLink } from 'react-router-dom';
-import MovieList from './MovieList';
+import MovieList from './MovieLists';
 
 
-function Home() {
+function Homes() {
 
 
     useEffect(() =>{
@@ -53,4 +53,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Homes

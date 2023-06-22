@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Cards from './Cards';
 import { useParams } from 'react-router-dom';
 
-function MovieList() {
+function MovieLists() {
 const [MovieList , setMovieList] = useState([]);
 const {type} = useParams();
 
@@ -36,4 +36,4 @@ const fetchData =() =>{
   )
 }
 
-export default MovieList
+export default MovieLists
