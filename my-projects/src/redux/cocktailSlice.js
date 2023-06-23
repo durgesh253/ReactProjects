@@ -17,7 +17,7 @@ export const getCocktailDetail = createAsyncThunk("getCocktailDetail" , async  (
 export const getoneCocktail = createAsyncThunk("getoneCocktail" , async (id) =>{
    try {
    const respone = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
-   return respone.data.drinks[0]
+   return respone.data.drinks
    } catch (error) {
     console.log(error);
     
@@ -27,7 +27,7 @@ export const getoneCocktail = createAsyncThunk("getoneCocktail" , async (id) =>{
     // try {
     // const response = await fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=")
     // const data = await response.json()
-    // return data.drinks
+    // return data.drinks[0]
         
     // } catch (error) {
     //     console.log("error" , error);

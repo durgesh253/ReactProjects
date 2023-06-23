@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { login } from '../redux/authintiSlice';
+// import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import  {login}  from '../redux/authintiSlice';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { object, string, number, date, InferType } from 'yup';
+import { object, string} from 'yup';
 import { useNavigate } from 'react-router-dom';
 
 
 function Login() {
 const distpatch =  useDispatch()
 const navigate = useNavigate();
+
+const {loading,errormgs} = useSelector((state) =>state.auth)
 //  const [email , setEmail] = useState("");
 //  const [password , setPassword] = useState("");
-  function handleSubmit(e){
-    e.preventDefault();
-  // const formvalue ={email , password};
-  // distpatch(login(formvalue));
-  }
+  // function handleSubmit(e){
+  //   e.preventDefault();
+  // // const formvalue ={email , password};
+  // // distpatch(login(formvalue));
+  // }
   const initialValues = {
     email : "" , password : "",
   }
@@ -26,10 +28,9 @@ const navigate = useNavigate();
   })
  
   function formSubmit(value){
-    distpatch(navigate('/'));
-    console.log("value" , value);
+    console.log("value", value);
+    distpatch(login({ formValue: value, navigate }));
   }
-
   
 
   return (
@@ -70,7 +71,7 @@ const navigate = useNavigate();
                   <Field type="email" name="email" placeholder="Enter Gmail " className="form-control mb-2" />
                   <ErrorMessage name='email'style={{color: "red"}} component="div"    />
                   <Field type="password"  name="password"placeholder="Enter Password
- "className="form-control mb-2"/>
+                    "className="form-control mb-2"/>
                   <ErrorMessage name='password'style={{color: "red"}} component="div"/>
                   <button className='btn btn-dark'>Submit</button>
                 </Form>
