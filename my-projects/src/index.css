@@ -5,7 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  background-color: rgb(24, 40, 66);
+}
+.tamplete{
+  background-color: black;
+  padding: 40px;
+  margin-top: 140px;
 }
 
 
