@@ -4,7 +4,9 @@ import App from './App';
 import '../src/index.css'
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import {  storeData } from './reduxd/store';
+
+
 
 
 
@@ -12,8 +14,9 @@ import { store } from './redux/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render( <BrowserRouter>
- <Provider store={store}>
-  <App/> 
-  </Provider>
+  <Provider store={storeData}>
+    <App/> 
+    </Provider>
+    
   </BrowserRouter>);
 

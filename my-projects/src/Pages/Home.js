@@ -4,6 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import Button from '@mui/material/Button';
 import Services from '../components/Services';
 import Trusted from '../components/Trusted';
+import FeutureProducts from '../components/FeutureProducts';
 function Home() {
   return (
    <>
@@ -57,6 +58,7 @@ function Home() {
             </div>
                 </div>
             </Carousel>
+            <FeutureProducts/>
             </div>
              {/* <Services/>  */}
             <Trusted/>
