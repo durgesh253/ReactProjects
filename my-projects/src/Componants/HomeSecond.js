@@ -1,7 +1,19 @@
 import React from 'react'
 import profile from './profile.jpeg'
 
+ 
+const PDF_FILE_URL = 'http://localhost:3000/DurgeshResume.pdf'
 function HomeSecond() {
+
+const downloadfileurl =(url) => {
+  const fileName = url.split('/').pop()
+ const aTag = document.createElement('a')
+ aTag.href=url
+ aTag.setAttribute('download',fileName);
+ document.body.appendChild(aTag);
+ aTag.click();
+ aTag.remove();
+}
   return (
     <> 
    
@@ -22,7 +34,7 @@ function HomeSecond() {
           <p className='text-light'>With my proficiency in these technologies, I can design and implement user-friendly interfaces, handle data manipulation and user input effectively, and collaborate with designers and other developers to bring web projects to life. My portfolio showcases my ability to create visually appealing, responsive websites that offer an excellent user experience, demonstrating my expertise in web development.
 
 </p>
-          <a href="#download" className="btn btn-style btn-primary mt-lg-5 mt-4">Download CV</a>
+          <a onClick={() => {downloadfileurl(PDF_FILE_URL)}}  className="btn btn-style btn-primary mt-lg-5 mt-4">Download CV</a>
         </div>
       </div>
     </div>

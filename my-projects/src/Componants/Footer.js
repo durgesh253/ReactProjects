@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <>
-   <section className="w3l-footer py-sm-5 py-4" style={{backgroundColor:"black"}}>
+   <section className="footer-p py-sm-5 py-4" style={{backgroundColor:"black"}}>
   <div className="container">
     <div className="footer-content">
       <div className="row">
@@ -19,10 +19,10 @@ function Footer() {
         <div className="col-lg-4 footer-right text-lg-right text-center mt-lg-0 mt-3 ">
           <ul className="social m-0 p-0 d-flex" style={{listStyleType:"none",gap:"20px"}}>
           
-            <li><a href="#linkedin"><LinkedInIcon fontSize='large' color='#407cad'/></a></li>
-            <li><a href="#instagram"><InstagramIcon fontSize='large' style={{color:"#b80f5b"}}/></a></li>
-            <li><a href="#twitter"><GitHubIcon fontSize='large' className='text-light'/></a></li>
-            <li><Link to=''><FacebookIcon fontSize='large' className='' style={{color:"#5faee3"}}/></Link></li>
+            <li><Link to="https://www.linkedin.com/in/durgesh-jadhav-90a7401a6/"><LinkedInIcon fontSize='large' color='#407cad'/></Link></li>
+            <li><Link to="https://www.instagram.com/jadhavdurgesh256/"><InstagramIcon fontSize='large' style={{color:"#b80f5b"}}/></Link></li>
+            <li><Link to="https://github.com/durgesh253"><GitHubIcon fontSize='large' className='text-light'/></Link></li>
+            <li><Link to='https://www.facebook.com/'><FacebookIcon fontSize='large' className='' style={{color:"#5faee3"}}/></Link></li>
           </ul>
         </div>
       </div>
