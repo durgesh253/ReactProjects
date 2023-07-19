@@ -10,12 +10,13 @@ import {  storeData } from './reduxd/store';
 
 
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render( <BrowserRouter>
   <Provider store={storeData}>
-    <App/> 
+    
+     <App/> 
+   
     </Provider>
     
   </BrowserRouter>);

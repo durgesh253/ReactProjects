@@ -2,10 +2,25 @@ import React from 'react'
 import logo from '../images/logo1.png'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../reduxd/LoginSlice';
+
+
+
 
 
 function Navbar() {
+  const data = useLocation()
+const items = useSelector((state) => state.cart)
+ const {isLogin} = useSelector((state) => state.log)
+const dispatch = useDispatch()
+const navigate = useNavigate()
+
+ if (data.pathname === "/login") {
+  return null;
+}
+ 
   return (
     <>
    <nav className="navbar navbar-expand-lg bg-white">
@@ -30,9 +45,13 @@ function Navbar() {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/cart"><ShoppingCartIcon/></Link>
+          
         </li>
+        <span>items : {items.length}</span>
         <li className="nav-item">
-          <a className="nav-link" href="#"><Button variant="contained">Login</Button></a>
+          {
+            isLogin ? <Button onClick={() => dispatch(logout())}>Logout</Button> : <Button onClick={() => navigate("/login")} >Login</Button>
+          }
         </li>
       </ul>
         <ul className="navbar-nav">

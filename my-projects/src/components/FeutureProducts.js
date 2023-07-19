@@ -20,7 +20,7 @@ function FeutureProducts() {
     <div className='container'>
         <div className="row py-5">
         {
-            futureProducts.map((curElem) => {
+            futureProducts && futureProducts.map((curElem) => {
               const {name,image,price,id} = curElem;
                 return (
                   <div
