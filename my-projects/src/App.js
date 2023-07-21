@@ -1,25 +1,20 @@
 import React from 'react'
-import Navbar from './componants/Navbar'
-import { Route, Routes } from 'react-router-dom';
-import MovieList from './pages/MovieLists';
-import MoviDetail from './componants/MoviDetail';
-import Homes from './pages/Homes';
-import MovieLists from './pages/MovieLists';
-
+import { Route, Routes } from 'react-router-dom'
+import Home from './Home'
+import Create from './Create'
+import Update from './Update'
 
 function App() {
   return (
     <>
-   <Navbar/>
     <Routes>
-      <Route path='/' element={<Homes/>}/>
-      <Route path='movie/:id' element={<MoviDetail/>}/>
-      <Route path='movies/:type' element={<MovieLists/>}/>
-      <Route path='/*' element={<h2>Error Page</h2>}/>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/create' element={<Create/>}/>
+      <Route path='/update/:id' element={<Update/>}/>
     </Routes>
-   
-   </>
+      
+    </>
   )
 }
 
-export default App;
+export default App
