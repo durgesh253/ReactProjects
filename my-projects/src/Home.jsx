@@ -8,7 +8,6 @@ function Home() {
   const users = useSelector((state) => state.users);
   console.log(users);
 const dispatch =  useDispatch()
-
   const handleDelete = (id) => {
     dispatch(deleteUser({id : id}))
   }
