@@ -44,13 +44,13 @@ const navigate = useNavigate()
           <Link className="nav-link " to="/contact">Contact</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/cart"><ShoppingCartIcon/></Link>
+          <Link className="nav-link" to="/cart"><ShoppingCartIcon/><span>{items.length}</span></Link>
           
         </li>
-        <span>items : {items.length}</span>
+       
         <li className="nav-item">
           {
-            isLogin ? <Button onClick={() => dispatch(logout())}>Logout</Button> : <Button onClick={() => navigate("/login")} >Login</Button>
+            isLogin ? <Button  onClick={() => dispatch(logout())}>Logout</Button> : <Button onClick={() => navigate("/login")} >Login</Button>
           }
         </li>
       </ul>

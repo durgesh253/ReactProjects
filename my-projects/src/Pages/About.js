@@ -22,7 +22,7 @@ function About() {
    <div className='container py-md-5 py-2 pb-0'>
     <div className='second-row text-center'>
       <div className='title-content'>
-        <h6 className='text-danger'>Our Info</h6>
+        <h6 className='text-danger pt-3'>Our Info</h6>
         <h3 className='text-dark' style={{fontWeight:"900" ,textTransform: "uppercase"}}>About Our Djs Shoping</h3>
       </div>
       <p className='mt-3'>

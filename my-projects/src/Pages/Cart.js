@@ -1,39 +1,49 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { remove } from '../reduxd/CartSlice'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { remove } from '../reduxd/CartSlice';
+import { Link } from 'react-router-dom';
 
 function Cart() {
+  const cartData = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
-const cartData =  useSelector((state) => state.cart)
-const distpatch =  useDispatch()
+  const handleRemove = (cartId) => {
+    dispatch(remove(cartId));
+  };
 
-const handleRemove =(cartiid) => {
-  distpatch(remove(cartiid))
-}
   return (
     <>
-    <h3>Cart</h3>
-
-     <div className='conatiner'>
-      
-      {
-        cartData.map((carti) => {
-         
-          return(
-          <div className='card '>
-            <img src={carti.image} alt="" />
-            <div className='card-body'>
-              <h3>{carti.name}</h3>
-              <h3>{carti.price}</h3>
-              <button className='btn btn-danger' onClick={() =>handleRemove(carti.id)}>Remove</button>
-            </div>
-          </div>
-          )
-        })
-      }
-      </div>      
+      <h3>Cart</h3>
+      <div className='container '>
+        <table className='w-100'>
+          
+          <thead>
+            <tr >
+              <th style={{fontSize: "30px"}}>Product</th>
+              <th style={{fontSize: "30px"}}>Product Name</th>
+              <th style={{fontSize: "30px"}}>Price</th>
+              <th style={{fontSize: "30px"}}>Remove</th>
+            </tr>
+          </thead>
+          <hr />
+          <tbody className=''>
+            {cartData.map((cartItem, index) => (
+              <tr key={index}>
+                <td><img src={cartItem.image} style={{width:"50px"}} alt={cartItem.id} /></td>
+                <td>{cartItem.name}</td>
+                <td >{cartItem.price}</td>
+                <td className=''>
+                  <button className='btn btn-danger btn-sm mt-2' onClick={() => handleRemove(cartItem.id)}>Remove</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <hr />
+        <Link  className='btn btn-dark mb-3' to='/globalproduct'> explore product</Link>
+      </div>
     </>
-  )
+  );
 }
 
-export default Cart
+export default Cart;

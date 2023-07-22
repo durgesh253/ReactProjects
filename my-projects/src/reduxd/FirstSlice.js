@@ -71,8 +71,12 @@ export const FirstSlice = createSlice({
             (product) => product.company === company
           );
         }
-      }
-      
+      },
+      claerFilter : (state) => {
+        state.productData = state.searchData;
+        state.selectedCategory = '';
+        state.selectedCompany = '';
+      },
    
   
     },
@@ -107,6 +111,6 @@ export const FirstSlice = createSlice({
    
 
 })
-export const { feutureproductDetails,setGridView,setListView,setSearchData,filterByCategory,filterCompany} = FirstSlice.actions
+export const { feutureproductDetails,setGridView,setListView,setSearchData,filterByCategory,filterCompany,claerFilter} = FirstSlice.actions
 
 export default FirstSlice.reducer

@@ -33,8 +33,12 @@ function SingleProduct() {
         </div>
         <div className="col-md-6">
           <h2>Name: {productDetails.name}</h2>
-          <p>Category: {productDetails.price}</p>
           <p>{productDetails.description}</p>
+          <h4>Price: {productDetails.price}</h4>
+          <h5>Avalibale :in Stock</h5>
+          <h4 className='pt-2'> Comapny : {productDetails.company}
+          </h4>
+          <hr />
           <button className='btn btn-primary' onClick={() => handleadd(productDetails)}>Add to Cart</button>
         </div>
       </div>

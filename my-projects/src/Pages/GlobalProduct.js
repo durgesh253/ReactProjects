@@ -10,8 +10,9 @@ import { add, remove } from '../reduxd/CartSlice';
 import { setSearchData } from '../reduxd/FirstSlice';
 import GridView from '../components/GridView';
 import ProductListview from '../Pages/ProductListview';
+import claerFilter from '../reduxd/FirstSlice';
 
-function GlobalProduct() {
+function GlobalProduct({price,maxPrice,minPrice}) {
   const navigate = useNavigate();
   const { productData, loading, selectedCategory } = useSelector((state) => state.counter);
   const [value, setvalue] = useState('');
@@ -29,17 +30,12 @@ function GlobalProduct() {
     dispatch(filterCompany(selectedCompany));
      
   }
-  // Remove the following code as it is not needed
-  // const handleSearch = (event) => {
-  //   if (event.target.value) {
-  //     const searchText = event.target.value;
-  //     const matchProductData = productData.filter((items) =>{
-  //       const {name} = items;
-  //       return items.name.toLowerCase().includes(searchText.toLowerCase())
-  //     });
-  //     dispatch(setSearchData(matchProductData));
-  //   }
-  // };
+  const handleclear = () => {
+    dispatch(claerFilter());
+  }
+ 
+ 
+
 
   return (
     <>
@@ -51,7 +47,7 @@ function GlobalProduct() {
                 type="text"
                 placeholder="search"
                 className="form-control"
-                // onChange={handleSearch}
+              
                 value={value}
                 onChange={(e) => setvalue(e.target.value)}
               />
@@ -85,7 +81,20 @@ function GlobalProduct() {
         </select>
       </form>
     </div>
-            
+    <div className='pt-2'>
+              <h4>Price Range</h4>
+              <p><FormatPrice price={price} /></p>
+              <input
+                type="range"
+                min={minPrice}
+                max={maxPrice}
+                value={price}
+              />
+             
+            </div> 
+            <div className='pt-2'>
+              <button className='btn btn-danger' onClick={handleclear}>Clear Filter</button>
+            </div>
           </div>
 
           <div className="col-md-10">
