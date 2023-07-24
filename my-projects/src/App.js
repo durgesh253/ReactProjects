@@ -1,54 +1,80 @@
-import React, { useEffect, useState } from 'react'
-import Loading from './Loading';
-import Places from './Places';
-
-
-const url = 'https://course-api.com/react-tours-project'
+import React, { useState } from 'react'
+import reviews from './data';
+import {FaAngleRight,FaAngleLeft} from 'react-icons/fa'
 function App() {
-  const [places,setplaces] = useState([]);
-  const [loading,setloading] = useState(true);
-const removeplace = (id) => {
-  const newplace = places.filter((place) => place.id !== id);
-  setplaces(newplace);
-}
+  const [index,setindex] =  useState(2);
+  const {name,id,job,image,text} = reviews[index];
 
-  const fetchplaces = async () => {
-    setloading(true)
-    try {
-      const response = await fetch(url);
-      const place = await response.json();
-      setloading(false);
-      setplaces(place);
-      
-    } catch (error) {
-      setloading(false);
-      console.log(error)
+  const checkNumber = (number) => {
+    if (number > reviews.length - 1) {
+      return 0;
     }
-  }
-  useEffect(() => {
-    fetchplaces();
-  },[]);
+    if (number < 0) {
+      return reviews.length - 1;
+    }
+    return number;
+  };
 
-  if(loading) {
-    return <Loading/>
+  const handleleft = () => {
+   setindex((index) => {
+     let newindex = index + 1;
+     return checkNumber(newindex)
+   })
   }
+  const handleright = () => {
+    setindex((index) => {
+      let newindex = index - 1;
+      return checkNumber(newindex)
+    })
+   }
 
-  if(places.length === 0){
-    return(
-      <div className='conatiner'>
-        <h1>No places left</h1>
-        <button className='btn btn-info' onClick={() => fetchplaces()}>Refresh</button>
-      </div>
-    )
-  }
+   const ramdomperson = () => {
+    let randomnumber = Math.floor(Math.random() * reviews.length);
+    console.log(randomnumber);
+    if(randomnumber === index){
+      randomnumber = index + 1;
+    }
+    setindex(checkNumber(randomnumber))
+
+   }
   return (
     <>
-    <section>
-      <div>
-        <Places places={places} removeplace={removeplace}/>
-      </div>
-    </section>
       
+   <section className=" py-5" id="testimonials">
+  <div className="container py-sm-5 py-2 HomePageTestimonials">
+    <div className="text-center mb-sm-5 mb-4">
+      <h6 className="w3l-title-small mb-2">Testimonials</h6>
+      <h3 className="w3l-title-main mb-2">What people say about us</h3>
+    </div>
+    <div className=" align-items-center pt-md-4 bg-light text-black shadow">
+      <div className="w3-testimonial-content-top">
+        <div id="owl-demo1" className="owl-carousel owl-theme">
+          <div className="item">
+            <div className="testimonial-content">
+              <div className="test-img">
+                <img src={image} className="p-3"style={{width:"150px",height:"150px"}} alt="" />
+              </div>
+              <div className="testimonial">
+                <blockquote>
+                  <q>
+                   {text}</q>
+                </blockquote>
+                <div className="testi-des">
+                  <div className="peopl align-self">
+                    <h3>{name}</h3>
+                    <p className="indentity">{job}</p>
+                  </div>
+                  <div style={{fontSize:"30px"}}>
+                    <FaAngleLeft onClick={handleleft}/>
+                    <FaAngleRight onClick={handleright}/>
+                  </div>
+                  <button className='btn btn-secondary mb-3' onClick={ramdomperson}>surprice me</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div></div></div></section>
+
     </>
   )
 }
