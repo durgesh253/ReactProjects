@@ -1,54 +1,51 @@
-import React, { useEffect, useState } from 'react'
- const url = `https://course-api.com/react-tabs-project`
+import React from 'react'
+import { useState } from 'react'
+import Values from 'values.js';
+import Singlecolor from './Singlecolor';
 
 function App() {
-    const [lodaing , setLoading] = useState(true);
-    const [jobs, setJobs] = useState([]);
-    const [value , setValue] = useState(0);
+  const [color,setcolor] = useState('');
+  const [error,seterror] = useState(false);
+  const [list,setlist] = useState([]);
 
-    const fetchjobs = async () =>{
-        const response = await fetch(url);
-        const newjobs = await response.json();
-        setJobs(newjobs);
-        setLoading(false);
-    }
-
-  useEffect(() =>{
-   fetchjobs();
-  },[]) 
-
-  if(lodaing){
-    return(
-    <section className='section loading'>
-        <h1>Loading....</h1>
-    </section>
-    )
-  }
-   
+  const handlesubmit =  (e) => {
+     e.preventDefault();
+     try {
+      let colors = new Values(color).all(20)
+      console.log(colors);
+      setlist(colors);
+     } catch (error) {
+      console.log(error);
+      seterror(error)
+     }
   
-  const {title,dates,duties,company} = jobs[value];
+  }
   return (
     <>
-    <h1 className='text-center text-primary'>Experiance</h1>
-   
-    <div className='btn-container text-center p-3 '>
+    <div className='conatiner m-5'>
+       <div className='box d-flex'>
+        <h3 className=''>Color Genrator</h3>
+        <form action="" onSubmit={handlesubmit}>
+          <input type="text" className='form-control' placeholder='black' value={color} 
+            
+          onChange={(e) =>  setcolor(e.target.value)} />
+         
+        </form>
+        <button className='btn btn-primary btn-sm'>submit</button>
+       </div>
+       <div className='list'>
         {
-            jobs.map((item,index)=>{
-                return <button className='btn btn-outline-success border' onClick={() =>{setValue(index)}}>{item.company}</button>
-            })
+          list.map((item,index) => {
+          return(
+            <Singlecolor key={index} {...item} index={index}/>
+          )
+          })
         }
-
-    </div>
-    <div className='container'>
-    <h2 className='text-danger'>{title}</h2>
-   <button className='btn btn-warning '> <h3>{company}</h3> </button>
-   <h5  className='text-primary'>{dates}</h5>
-   <p className=''>{duties}</p>
-   </div>
-
-
+       </div>
+      </div> 
+      
     </>
-     )
+  )
 }
 
 export default App
