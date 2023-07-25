@@ -16,6 +16,7 @@ function App() {
       setmenu(data);
       return
     }
+    
     const newdata = data.filter((item) => item.category === category);
       setmenu(newdata);
   }
