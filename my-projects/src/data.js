@@ -1,23 +1,82 @@
-export default [
+export const quizdata = [
     {
-      id: 1,
-      title: 'Samsung Galaxy S7',
-      price: 599.99,
-      img: 'https://dl.airtable.com/.attachments/91ee456448cef47deec553a2ea3fa8ad/b08bec68/phone-2_ohtt5s.png',
-      amount: 1,
+        question: "Q1: What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans4"
     },
     {
-      id: 2,
-      title: 'google pixel ',
-      price: 499.99,
-      img: 'https://dl.airtable.com/.attachments/91c88ae8c1580e2b762ecb3f73ed1eed/a633139a/phone-1_gvesln.png',
-      amount: 1,
+        question: "Q2: What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans3"
     },
     {
-      id: 3,
-      title: 'Xiaomi Redmi Note 2',
-      price: 699.99,
-      img: 'https://dl.airtable.com/.attachments/bae9208dc34f35128749ecda5b999e84/337c285d/phone-3_h2s6fo.png',
-      amount: 1,
+        question: "Q3: What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans1"
     },
-  ];
+    {
+        question: "Q4: What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans3"
+    },
+    {
+        question: "Q5: What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans4"
+    },
+    {
+        question: "Q6: What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans3"
+    },
+    {
+        question: "Q7 What is the Full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans4"
+    },
+    {
+        question: "Q8 What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans4"
+    },
+    {
+        question: "Q9 What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans1"
+    },
+    {
+        question: "Q10 What Is the full form of HTML?",
+        a: "Hello my Friens",
+        b: "Hire of Me",
+        c: "Hello My System",
+        d: "Hyper Text Markup Language",
+        ans: "ans1"
+    },
+]
