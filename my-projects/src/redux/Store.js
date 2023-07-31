@@ -1,9 +1,8 @@
-import QuizSlice from "./QuizSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import ThemSlice from "./ThemSlice";
 
-const { configureStore } = require("@reduxjs/toolkit");
-
-export const store = configureStore({
-    reducer :{
-      quiz : QuizSlice,
+export const store =  configureStore({
+    reducer:{
+        them:ThemSlice,
     }
 })
