@@ -65,6 +65,15 @@
   font-size: 16px;
 }
 /* TodoList.css */
-
-
+.element{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+}
+.tds{
+ display: flex;
+ align-items:center ;
+ justify-content: center;
+}
 
