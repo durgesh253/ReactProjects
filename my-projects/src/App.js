@@ -3,8 +3,6 @@ import LoginForm from './Pages/LoginForm'
 import { Route, Routes } from 'react-router-dom'
 import AxiosFetch from './Pages/AxiosFetch'
 import Nav from './Pages/Nav'
-import ReactRedux from './Pages/ReactRedux'
-import { store } from './Redux/Store'
 import Products from './Pages/Products'
 
 
