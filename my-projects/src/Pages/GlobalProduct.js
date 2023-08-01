@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getproductData, filterByCategory, filterCompany } from '../reduxd/FirstSlice';
-import Box from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
+
+
 import FormatPrice from '../components/FormatPrice';
 import { Link, useNavigate } from 'react-router-dom';
 import ListView from '../components/ListView';
