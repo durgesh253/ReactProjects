@@ -19,6 +19,7 @@ function App() {
     const updateData = logindata.filter((item) => item.id !== id);
       setLoginData(updateData);
     }
+   
   return (
     <>
     <div className='container tamplete w-50 border border-warning'>
