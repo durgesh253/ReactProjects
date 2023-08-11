@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Appcontext } from './App'
-import { AiOutlineShoppingCart } from "react-icons/ai";
+
 
 
 function Navbar() {
@@ -36,7 +36,7 @@ function Navbar() {
               type="button"
               className="btn btn-dark btn-sm me-3 position-relative"
             >
-              <AiOutlineShoppingCart />
+           cart
               <span
                 className="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle d-flex justify-content-center align-items-center"
                 style={{ width: "26px", height: "26px" }}
