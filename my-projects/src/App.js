@@ -1,126 +1,34 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
+import Fillform from './Fillform';
+import Navbar from './Navbar';
+import { Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import PrivateRote from './PrivateRote';
+import { courseList } from './CourseList';
+import Courses from './Courses';
 
-function getlocalStorage() {
-  const data = localStorage.getItem("Data");
 
-  if (data) {
-    return JSON.parse(data);
-  } else {
-    return [];
-  }
-}
+export const Appcontext =  createContext()
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [tableData, setTableData] = useState(getlocalStorage());
-  const [isEdit, setIsEdit] = useState(false);
-  const [updateId, setUpdateId] = useState(null);
+  const[login,setlogin] = useState(false);
+  const[cart,setCart] = useState([]);
+  const [couseData,setCourseData] =  useState(courseList)
 
-  const formSubmit = (e) => {
-    e.preventDefault();
-    const formValue = {
-      id: new Date().getTime(),
-      email: email,
-      password: password
-    };
-    setTableData([...tableData, formValue]);
-    localStorage.setItem("Data", JSON.stringify([...tableData, formValue]));
-    setEmail("");
-    setPassword("");
-  };
-
-  const handleDelete = (id) => {
-    const newArray = tableData.filter((item) => item.id !== id);
-    setTableData(newArray);
-    localStorage.setItem("Data", JSON.stringify(newArray));
-  };
-
-  const updateData = (item) => {
-    const { email, password, id } = item;
-    setEmail(email);
-    setPassword(password);
-    setIsEdit(true);
-    setUpdateId(id);
-  };
-
-  const handleEdit = (e) => {
-    e.preventDefault();
-    const editedTableData = tableData.map((item) => {
-      if (item.id === updateId) {
-        return { ...item, email, password };
-      } else {
-        return item;
-      }
-    });
-    setTableData(editedTableData);
-    localStorage.setItem("Data", JSON.stringify(editedTableData));
-    setEmail("");
-    setPassword("");
-    setIsEdit(false);
-    setUpdateId(null);
-  };
 
   return (
     <>
-      <div className='container'>
-        <form>
-          <div className='mb-3'>
-            <label htmlFor='email'>Email</label>
-            <input
-              type='text'
-              id='email'
-              placeholder='Enter email'
-              value={email}
-              className='form-control'
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className='mb-3'>
-            <label htmlFor='password'>Password</label>
-            <input
-              type='password'
-              id='password'
-              placeholder='Enter password'
-              className='form-control'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          {
-            isEdit ? (
-              <button className='btn btn-close-white' onClick={handleEdit}>Update</button>
-            ) : (
-              <button className='btn btn-primary' onClick={formSubmit}>Submit</button>
-            )
-          }
-        </form>
-      </div>
-      <div className='container'>
-        <table>
-          <thead className='m-5'>
-            <tr>
-              <th>Email</th>
-              <th>Password</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((item) => {
-              const { id, email, password } = item;
-              return (
-                <tr key={id}>
-                  <td>{email}</td>
-                  <td>{password}</td>
-                  <td>
-                    <button className='btn btn-danger' onClick={() => handleDelete(id)}>Delete</button>
-                    <button className='btn btn-warning' onClick={() => updateData(item)}>Update</button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <Appcontext.Provider value={{login,cart,setlogin,couseData,setCart}}>
+    <Navbar/>
+   <Routes>
+    <Route path='/' element={<PrivateRote><Home/></PrivateRote>}/>
+    <Route path='/form' element={<Fillform/>}/>
+    <Route path="/courses" element={<PrivateRote><Courses/></PrivateRote>}/>
+   </Routes>
+
+   </Appcontext.Provider>  
+    
+
     </>
   );
 }
