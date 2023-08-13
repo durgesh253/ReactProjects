@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Loading from './Loading';
 import Places from './Places';
 
-
 const url = 'https://course-api.com/react-tours-project'
 function App() {
   const [places,setplaces] = useState([]);
@@ -12,19 +11,19 @@ const removeplace = (id) => {
   setplaces(newplace);
 }
 
-  const fetchplaces = async () => {
-    setloading(true)
-    try {
-      const response = await fetch(url);
-      const place = await response.json();
-      setloading(false);
-      setplaces(place);
-      
-    } catch (error) {
-      setloading(false);
-      console.log(error)
-    }
+ const fetchplaces =  async () => {
+  setloading(true)
+  try {
+    const repsonse = await fetch(url);
+    const data = await repsonse.json();
+    console.log(data);
+    setplaces(data)
+    setloading(false)
+  } catch (error) {
+    console.log(error);
+    setloading(false);
   }
+ }
   useEffect(() => {
     fetchplaces();
   },[]);
@@ -33,14 +32,12 @@ const removeplace = (id) => {
     return <Loading/>
   }
 
-  if(places.length === 0){
-    return(
-      <div className='conatiner'>
-        <h1>No places left</h1>
-        <button className='btn btn-info' onClick={() => fetchplaces()}>Refresh</button>
-      </div>
-    )
-  }
+ if(places.length === 0) {
+  return <div className='text-center'>
+    <h1>No Place left</h1>
+    <button className='btn btn-primary' onClick={() => fetchplaces()}>Go Places</button>
+  </div>
+ }
   return (
     <>
     <section>
