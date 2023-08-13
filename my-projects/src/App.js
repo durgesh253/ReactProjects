@@ -8,9 +8,10 @@ function App() {
       <h2 className='text-center bg-gradient'>Student Details</h2>
       <section className='container' id='card'>
         <h3>{students.length} of Students</h3>
-        <StudentList students={students}/>
+        <StudentList students={students} setStudents={setStudents}/>
         <button className='btn btn-light btn-sm' onClick={() => setStudents([])}>Clear All</button>
       </section>
+
     </div>
   )
 }
