@@ -9,23 +9,23 @@ import { UserList } from '../Data';
     initialState: UserList,
     reducers:{
       addUser: (state, action) => {
-      state.push(action.payload);
+     state.push(action.payload)
       },
       updateUser: (state, action) => {
-      const {id,userName,email} = action.payload;
-      const updateUser = state.find(user => user.id == id);
-      if(updateUser){
-        updateUser.userName = userName;
-        updateUser.email = email;
+        const {id,userName,email} = action.payload;
+        const updateUser = state.find(user => user.id == id);
+        if(updateUser){
+         updateUser.userName = userName;
+         updateUser.email = email;
       }
-      },
+    },
       deleteUser: (state, action) => {
-        const {id} = action.payload;
-        const deleteUser = state.find(user => user.id == id);
-        if(deleteUser){
-          return state.filter((user) => user.id !== id);
-        }
-       
+      const {id} = action.payload;
+      const deleteUser = state.find(user =>  user.id == id);
+      if(deleteUser) {
+        return state.filter(user => user.id !== id);
+      }
+
       },
     },
   });

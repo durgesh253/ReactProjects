@@ -9,18 +9,29 @@ function Update() {
   const { id } = useParams();
   const dispatch = useDispatch();
 const navigate = useNavigate()
-  
-const users = useSelector((state) => state.users)
-const newuser = users.filter((f) => f.id == id);
-  const {email, userName} = newuser[0];
-  const [uname, setUname] = useState(userName);
-  const [uemail, setUemail] = useState(email);
+const users =  useSelector((state) => state.users);
+  const newuser = users.filter((f) => f.id == id);
+  const {email,userName} = newuser[0];
+  const[uemail,setUemail] = useState(email);
+  const[uname,setUname] = useState(userName);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateUser({ id: id, userName: uname, email: uemail }));
+    dispatch(updateUser({id :id,userName : uname ,email : uemail}))
     navigate('/')
-  };
+
+  }
+// const users = useSelector((state) => state.users)
+// const newuser = users.filter((f) => f.id == id);
+//   const {email, userName} = newuser[0];
+//   const [uname, setUname] = useState(userName);
+//   const [uemail, setUemail] = useState(email);
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     dispatch(updateUser({ id: id, userName: uname, email: uemail }));
+//     navigate('/')
+//   };
 
   return (
     <>
