@@ -1,30 +1,26 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Navbar from './Navbar'
-import Home from './pages/Home'
-import Coktail from './pages/Coktail'
-import CocktailDetails from './pages/CocktailDetails'
-import PrivateRoute from './pages/PrivateRoute'
-import Login from './pages/Login'
-
-
+import React, { useContext } from 'react'
+import { ThemeProvider, useGlobalContext } from './context/ThemContext'
 
 function App() {
- 
+  const {isDarkMode,toggleTheme} = useGlobalContext()
   return (
     <div>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/coktails' element={<Coktail/>}/>
-        <Route path='/coktails/:id' element={<PrivateRoute><CocktailDetails/></PrivateRoute>} />
-        <Route path='/product' element={<h1>Product list</h1>} />
-        <Route path='/add-product' element={<h1>Add product</h1>}/>
-        <Route path='/edit-product' element={<h1>Edit product</h1>}/>
-        <Route path='/login' element={<Login/>}/>
-    
-      </Routes>
-     
+      <ThemeProvider>
+      <div
+        className="app"
+        style={{
+          backgroundColor: isDarkMode
+            ? 'var(--background-color-dark)'
+            : 'var(--background-color-light)',
+          color: isDarkMode ? 'var(--text-color-dark)' : 'var(--text-color-light)',
+        }}
+      >
+        <h1>Dark and Light Mode Example</h1>
+        <button onClick={toggleTheme}>
+      {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+    </button>
+      </div>
+      </ThemeProvider>
       
     </div>
   )
