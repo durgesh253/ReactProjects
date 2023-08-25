@@ -1,6 +1,6 @@
 /* TodoList.css */
 .todo-container {
-  width: 100%;
+  width: 50%;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -77,3 +77,6 @@
  justify-content: center;
 }
 
+.text-center{
+  text-align: center;
+}

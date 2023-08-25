@@ -9,12 +9,7 @@ function App() {
       <TodoList/>
       
     </div>
-    <div className='element'>
-         <p>centered Text</p>
-    </div>
-    <div className='tds'>
-      <div>heelo Durgesh</div>
-    </div>
+  
     </>
   )
 }
