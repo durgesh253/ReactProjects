@@ -1,19 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getCocktailDetail = createAsyncThunk("getCocktailDetail" , async  (searValue , {}) =>{
-   // axios data =================================
+// export const getCocktailDetail = createAsyncThunk("getCocktailDetail" , async  (searValue , {}) =>{
+//    // axios data =================================
 
-   try {
-       const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searValue}`)
-       return response.data.drinks
+//    try {
+//        const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searValue}`)
+//        return response.data.drinks
 
-   } catch (error) {
-    console.log(error);
+//    } catch (error) {
+//     console.log(error);
     
-   }
-})
+//    }
+// })
 
+export const getCocktailDetail = createAsyncThunk("getCocktailDetail" , async(searValue , {}) => {
+    try {
+        const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searValue}`);
+        return response.data.drinks
+    } catch (error) {
+        console.log(error);
+    }
+})
+ 
 export const getoneCocktail = createAsyncThunk("getoneCocktail" , async (id) =>{
    try {
    const respone = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
@@ -39,7 +48,7 @@ export const getoneCocktail = createAsyncThunk("getoneCocktail" , async (id) =>{
 export const cocktailSlice = createSlice({
     name : "cocktail",
     initialState : {
-        cocktilDetails : [],
+         cocktilDetails : [],
         loading : true,
         oneCocktail : {}
     },
@@ -47,14 +56,25 @@ export const cocktailSlice = createSlice({
 
     },
     extraReducers :{
-        [getCocktailDetail.pending] : (state, action) =>{
+        // [getCocktailDetail.pending] : (state, action) =>{
+        //     state.loading = true
+        // },
+        // [getCocktailDetail.fulfilled] : (state , action) =>{
+        //     state.loading = false
+        //     state.cocktilDetails = action.payload
+        // },
+        // [getCocktailDetail.rejected ] : (state, action) =>{
+        //     state.loading = false
+        // },
+
+        [getCocktailDetail.pending] : (state,action) => {
             state.loading = true
         },
-        [getCocktailDetail.fulfilled] : (state , action) =>{
-            state.loading = false
-            state.cocktilDetails = action.payload
+        [getCocktailDetail.fulfilled] : (state,action) => {
+            state.loading= false
+            state.cocktilDetails = action.payload;
         },
-        [getCocktailDetail.rejected ] : (state, action) =>{
+        [getCocktailDetail.rejected] : (state,action)=> {
             state.loading = false
         },
         [getoneCocktail.pending] : (state , action) =>{

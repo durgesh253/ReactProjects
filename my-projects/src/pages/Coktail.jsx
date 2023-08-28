@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCocktailDetail } from '../redux/cocktailSlice';
+
 import { useNavigate } from 'react-router-dom';
+import { getCocktailDetail } from '../redux/cocktailSlice';
 
 function Coktail() {
 
