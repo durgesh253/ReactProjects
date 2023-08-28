@@ -1,0 +1,79 @@
+1) What is React Js? 
+=> React is a javascript library to build a user interface.
+
+2) What is NPM in React Js?
+=> NPM is short for node package manager, an online directory.
+
+3) What is Role of Node Js in react Js? 
+=> NodeJS is a framework of JavaScript which is mainly used for working with the backend of our application or building the backend using JavaScript.
+
+4) What is CLI command In React Js?
+=> CLI is a command line program that accepts text input to execute operating system functions.
+
+5) What is Components in React Js?
+=> A Component is a reusable and self-contained picee of UI.
+
+6) What is Header and Content Components in React Js? 
+=> Headers are compositions that extend standard navbar functionalities.
+ They contain additional components like a j sub-navbar, 
+ or image covers which serve as a containers for extra navigation elements - usually links, forms, or call-to-action buttons.
+
+7) How to install React Js on Windows, linux Operating System? How
+to install NPM and How to check version of NPM? 
+=> 1) install React Js on Windows
+   1 - install Node.js and npm:
+   2 - Check Installation:
+       node -version
+       npm -version
+   3 - Create a React App:
+       npm install -g create-react-app
+   4 - Create a New React App:
+       npx create-react-app my-react-app
+   5 - Navigate to Your App's Directory
+       cd my-react-app
+   6 - Start the Development Server
+       npm start
+   7 - Access Your App:
+       http://localhost:3000
+    
+2) linux Operating System
+   1 - install Node.js and npm:
+       Open a terminal on your Linux system.
+       sudo apt update
+       sudo apt install nodejs npm
+   2 - Check Installation:
+       node -v
+       npm -v
+   3 - Create a React App:
+       npm install -g create-react-app
+   4 - Create a New React App:
+       npx create-react-app my-react-app
+   5 - Navigate to Your App's Directory
+       cd my-react-app
+   6 - Start the Development Server
+       npm start
+   7 - Access Your App:
+       http://localhost:3000    
+
+3) install NPM and How to check version of NPM
+    1 = Install Node.js:
+    2 = Check npm Version
+        npm -v
+
+8) How to check version of React Js
+=> Using package.json file
+   Using command line
+   npm view react version
+
+9) How to change in components of React Js?
+=> setState() setState() enqueues changes to the component state and tells React that this component 
+and its children need to be re-rendered with the updated state. This is the primary method you use to update
+ the user interface in response to event handlers and server responses.
+
+10) How to Create a List View in React Js? 
+=>  1) use Array.map
+    2) not a for loop
+    3) Give each item a unique key
+    
+
+
