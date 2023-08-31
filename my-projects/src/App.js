@@ -1,20 +1,22 @@
-// src/App.js
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route,  } from 'react-router-dom';
+import React from 'react'
+import DataTable from './DataTable'
+import { Route, Routes } from 'react-router-dom'
+import Home from './Home'
+import Create from './Create'
+import Update from './Update'
 
-const Home = lazy(() => import('./Home'));
-const Dashboard = lazy(() => import('./Dashboard'));
-
-const App = () => {
+function App() {
   return (
-    <Router>
-    <Suspense fallback={<div>Loading...</div>}>
-      <Route path="/" exact component={Home} />
-      <Route path="/dashboard" component={Dashboard} />
-    </Suspense>
-  </Router>
-  );
-};
+    <div>
+ 
+    
+    <Routes>
+    <Route path='/' element={<Home/>}/>
+    <Route path='/create' element={<Create/>}/>
+    <Route path='/update/:id' element={<Update/>}/>
+    </Routes>
+    </div>
+  )
+}
 
-export default App;
-
+export default App
