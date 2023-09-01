@@ -19,18 +19,19 @@ function Update() {
     e.preventDefault();
     dispatch(
       updateuser({
-        id: id, // Convert id to integer
+        id: id,
         userName: UunuserName,
         email: uemail,
         phone: uphone,
         age: uage,
       })
     );
-    navigate('/'); // Redirect after update
+    navigate('/'); //
   };
 
   return (
     <div className='container'>
+    <h1 style={{textAlign : "center" , textTransform:"uppercase"}}>Update Details</h1>
       <form className='w-50' onSubmit={handleUpdate}>
         <label htmlFor='name'>Enter Name:</label>
         <input

@@ -5,7 +5,13 @@ function DataTable() {
         {id : 1 , name : "Durgesh" , age : 20},
         {id : 2 , name : "sanket" , age : 23},
         {id : 3 , name : "Pradip" , age : 29},
-        {id : 4 , name : "Nilesh" , age : 22},
+        {id : 4 , name : "Nilesh" , age : 23},
+        {id : 5 , name : "harish" , age : 20},
+        {id : 6 , name : "yash" , age : 19},
+        {id : 7, name : "vansh" , age : 28},
+        {id : 8 , name : "siraj" , age : 17},
+        {id : 9 , name : "aditya" , age : 12},
+        {id : 10 , name : "sankalp" , age : 10},
     ];
 
     const [DataValue,SetDataVlue] = useState(data)
