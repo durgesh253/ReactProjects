@@ -1,20 +1,24 @@
-import React from 'react'
-import DataTable from './DataTable'
-import {  Route, Routes } from 'react-router-dom'
-import Home from './Home'
-import Create from './Create'
-import Update from './Update'
+import React, { useState } from 'react';
+import { Data } from './Data';
+import Question from './Question';
 
 function App() {
+  const [questions, setQuestions] = useState(Data);
+
   return (
-    <div>
-    <Routes>
-    <Route path='/' element={<Home/>}/>
-    <Route path='/create' element={<Create/>}/>
-    <Route path='/update/:id' element={<Update/>}/>
-    </Routes>
-    </div>
-  )
+    <main>
+      <div className='container'>
+        <h2>React Accordion</h2>
+        <section className='info'>
+          {questions.map((question) => (
+            <Question key={question.id} {...question} />
+          ))}
+        </section>
+      </div>
+    </main>
+  );
 }
 
-export default App
+export default App;
+
+
