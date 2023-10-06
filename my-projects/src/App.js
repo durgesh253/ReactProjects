@@ -1,71 +1,120 @@
-// import { ErrorMessage, Field, Form, Formik } from 'formik';
-// import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { object, string } from 'yup';
-
-
-// function App() {
-//   const { loading } = useSelector((state) => state.login);
-//   const dispatch = useDispatch();
-  
-//   const validationSchema = object({
-//     email: string()
-//       .email("Please Enter a Valid Email")
-//       .required("Email is Required"),
-//     password: string()
-//       .required("Password is Required")
-//       .max(10, "Maximum 10 characters Required") // Changed max value to 10
-//       .min(4, "Minimum 4 characters is required")
-//   });
-
-//   function formSubmit(values) {
-//     console.log("values", values);
-//   }
-
-//   if (loading) {
-//     return <h3 className='text-center'>Loading .......</h3>;
-//   }
-
-//   return (
-//     <div>
-//       <PhoneAuthintiCation/> {/* Corrected component name */}
-//       <h3>Form Validation</h3>
-//       <Formik
-//         initialValues={{ email: '', password: '' }}
-//         validationSchema={validationSchema}
-//         onSubmit={formSubmit}
-//       >
-//         {() => (
-//           <Form className='w-50 mt-5 p-5'>
-//             <div className='mb-3'>
-//               <label htmlFor="email" className="form-label">Email</label>
-//               <Field type="email" name="email" className="form-control" placeholder="Enter Email" />
-//               <ErrorMessage name='email' component='div' className='mt-1 text-danger' />
-//             </div>
-//             <div className='mb-3'>
-//               <label htmlFor="password" className="form-label">Password</label>
-//               <Field type="password" name="password" className="form-control" placeholder="Enter Password" />
-//               <ErrorMessage name='password' component='div' className='mt-1 text-danger' />
-//             </div>
-//             <button type='submit' className='btn btn-success'>Submit</button>
-//           </Form>
-//         )}
-//       </Formik>
-//     </div>
-//   );
-// }
-
-// export default App;
-import React from 'react'
-import PhoneAuthintiCation from './PhoneAuthintiCation'
-
+import React, { useEffect, useState } from 'react';
+import cart from './image/cart.png';
 
 function App() {
+  const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState('');
+  const [filterData, setFilterData] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [newitem, setNewitem] = useState(null); // Initialize as null for checking existence
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      const result = await response.json();
+      setData(result.drinks || []);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+      const data = await response.json();
+      setCategory(data.drinks);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    fetchCategories();
+  }, []);
+
+  const handleSearch = (e) => {
+    const searchterm = e.target.value.toLowerCase();
+    setSearchData(searchterm);
+
+    const filterSearch = data.filter((item) =>
+      item.strDrink.toLowerCase().includes(searchterm)
+    );
+    setFilterData(filterSearch);
+  };
+
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    setSelectedCategory(selectedCategory);
+
+    const filteredData = data.filter((item) =>
+      selectedCategory === '' || item.strCategory === selectedCategory
+    );
+    setFilterData(filteredData);
+  };
+
+  const addtoCart = (item) => {
+    if (item) {
+      setNewitem(item); // Update the new item state
+    }
+  };
+
+  const drinksToRender = searchData ? filterData : data;
+
   return (
     <>
-      <PhoneAuthintiCation/>
+      <div className='search m-4 d-flex justify-content-between '>
+        <input
+          type="text"
+          className='form-control w-50 border-5'
+          value={searchData}
+          onChange={handleSearch}
+        />
+       
+        <div className='mt-2'>
+          <select onChange={handleCategoryChange} value={selectedCategory}>
+            <option value="">All Categories</option>
+            {category.map((cat) => (
+              <option key={cat.strCategory} value={cat.strCategory}>
+                {cat.strCategory}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className='m-2 justify-content-end'>
+          <img src={cart} alt="" />
+          <span className='m-1 p-2 cartspan'>{data.length}</span>
+        </div>
+      </div>
+
+      <div className="text-white text-center justify-content-center row m-5 gap-3 ">
+        {drinksToRender.length > 0 ? (
+          drinksToRender.map((item) => {
+            return (
+              <div key={item.idDrink} className="card d-flex">
+                <div className="card-img">
+                  <img src={item.strDrinkThumb} alt="" style={{ height: '100px', width: '160px' }} />
+                </div>
+                <div className="card-info">
+                  <p className="text-title">{item.strDrink}</p>
+                  <p className="text-body">{item.strGlass}</p>
+                </div>
+                <div className="card-footer">
+                  <span className="text-title">{item.idDrink}$</span>
+                  <div className="card-button" onClick={() => addtoCart(item)}>
+                    <img src={cart} alt="cart" />
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p>No data available</p>
+        )}
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
